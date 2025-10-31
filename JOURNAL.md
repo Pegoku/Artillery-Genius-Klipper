@@ -21,3 +21,14 @@ To mod this printer, I'll first have to modify the frame so I can access the SCB
 I designed a bracket so I could screw the SBC to the chassis of the printer. I did a quick design to test it. It mostly worked, though, I have to fix a few issues with the design/improvemes I can do.![089e156b-7141-488f-ac42-cf473aa09ce7~1](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NjU0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--78a55fcf72badb6580587f539e2a7279aa69f6cf/089e156b-7141-488f-ac42-cf473aa09ce7~1.jpg)
   
 
+## 10/31/2025 - The printer is assembled!  
+
+I finished assembling the printer. It was hard to find the USB-B cable, but I luckily did. Sadly, it is a bit too long, and it touches the fan.
+
+Final build:
+
+![PXL_20251031_164137815.MP](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzA0OSwicHVyIjoiYmxvYl9pZCJ9fQ==--eb3e4555afdb37da12ee2e5de43dc4e2212fd720/PXL_20251031_164137815.MP.jpg)
+
+![PXL_20251031_163212485 (1)](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzA1MSwicHVyIjoiYmxvYl9pZCJ9fQ==--f656534dde30ab60ef788c1601122db70fa98b7f/PXL_20251031_163212485%20(1).jpg)
+  
+
