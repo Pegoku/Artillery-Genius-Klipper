@@ -32,3 +32,20 @@ Final build:
 ![PXL_20251031_163212485 (1)](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzA1MSwicHVyIjoiYmxvYl9pZCJ9fQ==--f656534dde30ab60ef788c1601122db70fa98b7f/PXL_20251031_163212485%20(1).jpg)
   
 
+## 11/1/2025 - Why is it to hard to flash firmware!  
+
+I now just had to flash klipper to the MCU, and it seemed like an easy task, but... it wasn't (maybe I was just being ******).
+It turns out the board used an ATmega2560, and you can't just flash them. you have to press the reset button, and less than a second later, start uploading the firmware, if not, it will just timeout. This took me a WHILE to figure out, after too much trial and error.
+But finally! The printer is configured.
+Sadly, the display doesn't work (yet), but the printer prints!
+
+
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzM4NCwicHVyIjoiYmxvYl9pZCJ9fQ==--4027418c87e815c45fe337340c29ceb8b41e475b/image.png)
+
+I also configured the firmware using the correct end stops (as I don't have a bltouch), leveling the bed, calibrating PID, etc.
+
+The printer isn't extremely fast, but it's fast enough, roughly similar, though a bit slower than my current Elegoo N4.
+
+![PXL_20251101_104437338.MP](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NzM4NSwicHVyIjoiYmxvYl9pZCJ9fQ==--6a89dca629711ef7993427f7e5b3ab91cd8e60f0/PXL_20251101_104437338.MP.jpg)
+  
+
