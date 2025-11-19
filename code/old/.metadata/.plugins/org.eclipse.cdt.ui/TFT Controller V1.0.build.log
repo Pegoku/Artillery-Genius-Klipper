@@ -1,0 +1,10 @@
+23:04:11 **** Incremental Build of configuration Debug for project TFT Controller V1.0 ****
+make -j16 all 
+arm-none-eabi-size  TFT\ Controller\ V1.0.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6708	     12	   1660	   8380	   20bc	TFT Controller V1.0.elf
+Finished building: default.size.stdout
+ 
+
+23:04:11 Build Finished. 0 errors, 0 warnings. (took 88ms)
+
