@@ -100,8 +100,8 @@ int main(void)
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
     HAL_Delay(100);
 
-    // HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-    // HAL_Delay(100);
+    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
+    HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
