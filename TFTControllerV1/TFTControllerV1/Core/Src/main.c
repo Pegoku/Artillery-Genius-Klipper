@@ -117,12 +117,12 @@ int main(void)
       
 
       /* Toggle LED to indicate touch detected */
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1);
+      HAL_GPIO_WritePin(BL_Pin_GPIO_Port, BL_Pin_Pin, 1);
     }
     else
     {
       touch_pressed = 0;
-      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 0);
+      HAL_GPIO_WritePin(BL_Pin_GPIO_Port, BL_Pin_Pin, 0);
     }
     
     /* Small delay between reads */
