@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "xpt2046.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +32,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+/* XPT2046 Touch CS Pin - Using PD15 */
+#define XPT2046_CS_PORT  GPIOD
+#define XPT2046_CS_PIN   GPIO_PIN_15
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -43,7 +46,11 @@
 SPI_HandleTypeDef hspi3;
 
 /* USER CODE BEGIN PV */
-
+/* Touch data - can be viewed in debugger */
+volatile uint16_t touch_x = 0;
+volatile uint16_t touch_y = 0;
+volatile uint8_t touch_pressed = 0;
+XPT2046_TouchData touch_data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -90,18 +97,36 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
-
+  
+  /* Initialize XPT2046 touch controller */
+  XPT2046_Init(&hspi3, XPT_CS_GPIO_Port, XPT_CS_Pin);
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
-    HAL_Delay(100);
+    /* Read touch data */
+    if (XPT2046_ReadTouch(&touch_data))
+    {
+      /* Touch detected - update global variables */
+      touch_x = touch_data.x;
+      touch_y = touch_data.y;
+      touch_pressed = 1;
+      
 
-    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-    HAL_Delay(100);
+      /* Toggle LED to indicate touch detected */
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1);
+    }
+    else
+    {
+      touch_pressed = 0;
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 0);
+    }
+    
+    /* Small delay between reads */
+    HAL_Delay(50);
 
     /* USER CODE END WHILE */
 
@@ -210,7 +235,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, BL_Pin_Pin|XPT_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PA2 */
   GPIO_InitStruct.Pin = GPIO_PIN_2;
@@ -219,15 +244,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PD14 */
-  GPIO_InitStruct.Pin = GPIO_PIN_14;
+  /*Configure GPIO pins : BL_Pin_Pin XPT_CS_Pin */
+  GPIO_InitStruct.Pin = BL_Pin_Pin|XPT_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
-
+  
+  /* Configure XPT2046 CS pin (PD15) as output */
+  GPIO_InitStruct.Pin = XPT2046_CS_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(XPT2046_CS_PORT, &GPIO_InitStruct);
+  
+  /* Set CS high initially (deselect) */
+  HAL_GPIO_WritePin(XPT2046_CS_PORT, XPT2046_CS_PIN, GPIO_PIN_SET);
+  
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
