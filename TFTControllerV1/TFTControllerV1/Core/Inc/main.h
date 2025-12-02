@@ -59,8 +59,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BL_Pin_Pin GPIO_PIN_14
 #define BL_Pin_GPIO_Port GPIOD
-#define XPT_CS_Pin GPIO_PIN_15
-#define XPT_CS_GPIO_Port GPIOD
+#define D_CS_Pin GPIO_PIN_8
+#define D_CS_GPIO_Port GPIOC
+#define XPT_CS_Pin GPIO_PIN_9
+#define XPT_CS_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 
